@@ -223,8 +223,8 @@
         .products-constellation {
             position: relative;
             width: 100%;
-            max-width: 900px;
-            height: 500px;
+            max-width: 1100px;
+            height: 450px;
             margin: 3rem auto;
         }
 
@@ -232,52 +232,62 @@
             position: absolute;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 1.25rem;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
             backdrop-filter: blur(10px);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            width: 160px;
         }
 
+        /* AutoSprint - Left side */
         .product-node.flagship {
-            width: 200px;
+            left: 10%;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateY(-50%);
             background: rgba(79, 195, 247, 0.08);
             border: 2px solid rgba(79, 195, 247, 0.3);
-            box-shadow: 0 0 40px rgba(79, 195, 247, 0.2);
+            box-shadow: 0 0 30px rgba(79, 195, 247, 0.2);
             animation: pulse-glow 4s ease-in-out infinite;
         }
 
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 40px rgba(79, 195, 247, 0.2); }
-            50% { box-shadow: 0 0 60px rgba(79, 195, 247, 0.3); }
+            0%, 100% { box-shadow: 0 0 30px rgba(79, 195, 247, 0.2); }
+            50% { box-shadow: 0 0 45px rgba(79, 195, 247, 0.3); }
         }
 
-        .product-node.satellite {
-            width: 160px;
+        /* AutoMCP - Center */
+        .satellite-1 {
+            left: 35%;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        .satellite-1 { top: 10%; left: 35%; }
-        .satellite-2 { top: 30%; left: 10%; }
-        .satellite-3 { top: 60%; left: 15%; }
-
-        .product-node.independent {
-            width: 180px;
+        /* Keymaster - Top right of AutoMCP */
+        .satellite-2 {
+            left: 55%;
+            top: 30%;
         }
 
+        /* AutoRegistry - Bottom right of AutoMCP */
+        .satellite-3 {
+            left: 55%;
+            bottom: 30%;
+        }
+
+        /* TradeBrainz - Far right top */
         .independent-1 {
-            top: 20%;
-            right: 10%;
+            right: 8%;
+            top: 15%;
             background: rgba(233, 30, 99, 0.05);
             border-color: rgba(233, 30, 99, 0.2);
             animation: float-independent-1 6s ease-in-out infinite;
         }
 
+        /* Rocket Tabs - Far right bottom */
         .independent-2 {
+            right: 8%;
             bottom: 15%;
-            right: 15%;
             background: rgba(255, 152, 0, 0.05);
             border-color: rgba(255, 152, 0, 0.2);
             animation: float-independent-2 7s ease-in-out infinite;
@@ -294,62 +304,50 @@
         }
 
         .product-node:hover {
-            transform: scale(1.05) translate(-50%, -50%);
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05) translateY(-50%);
             z-index: 10;
         }
 
-        .product-node.satellite:hover,
         .product-node.independent:hover {
             transform: scale(1.05);
         }
 
         .product-node h3 {
             color: white;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
         }
 
         .product-node p {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
 
-        .product-node.flagship h3 { font-size: 1.3rem; }
-        .product-node.flagship p { font-size: 0.9rem; }
+        .product-node.flagship h3 { font-size: 1.1rem; }
 
-        .pulse-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(79, 195, 247, 0.6), transparent);
-            transform-origin: left center;
-            pointer-events: none;
-            opacity: 0;
-            animation: pulse-line 3s ease-in-out infinite;
+        /* Marching ants flow lines */
+        .flow-line {
+            stroke: rgba(79, 195, 247, 0.4);
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 5, 5;
+            animation: marching-ants 0.5s linear infinite;
         }
 
-        @keyframes pulse-line {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
+        @keyframes marching-ants {
+            from {
+                stroke-dashoffset: 0;
+            }
+            to {
+                stroke-dashoffset: 10;
+            }
         }
 
-        .pulse-dot {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #4FC3F7;
-            border-radius: 50%;
-            animation: travel-pulse 3s linear infinite;
-            box-shadow: 0 0 10px rgba(79, 195, 247, 0.8);
-        }
-
-        @keyframes travel-pulse {
-            0% { offset-distance: 0%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { offset-distance: 100%; opacity: 0; }
+        .flow-arrow {
+            fill: rgba(79, 195, 247, 0.6);
         }
 
         @media (max-width: 768px) {
@@ -432,35 +430,22 @@
                 </p>
 
                 <div class="products-constellation">
-                    <!-- Pulse lines connecting AutoSprint to satellites -->
-                    <svg class="pulse-lines" style="position: absolute; width: 100%; height: 100%; pointer-events: none;">
-                        <line class="pulse-line" id="line1" stroke="url(#gradient1)" stroke-width="1" opacity="0.5"></line>
-                        <line class="pulse-line" id="line2" stroke="url(#gradient1)" stroke-width="1" opacity="0.5"></line>
-                        <line class="pulse-line" id="line3" stroke="url(#gradient1)" stroke-width="1" opacity="0.5"></line>
-
+                    <!-- Flow lines with marching ants -->
+                    <svg style="position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
                         <defs>
-                            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#4FC3F7;stop-opacity:0" />
-                                <stop offset="50%" style="stop-color:#4FC3F7;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#4FC3F7;stop-opacity:0" />
-                            </linearGradient>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" class="flow-arrow" />
+                            </marker>
                         </defs>
 
-                        <circle class="pulse-dot" r="3" fill="#4FC3F7">
-                            <animateMotion dur="3s" repeatCount="indefinite">
-                                <mpath href="#line1"/>
-                            </animateMotion>
-                        </circle>
-                        <circle class="pulse-dot" r="3" fill="#4FC3F7">
-                            <animateMotion dur="3s" repeatCount="indefinite" begin="1s">
-                                <mpath href="#line2"/>
-                            </animateMotion>
-                        </circle>
-                        <circle class="pulse-dot" r="3" fill="#4FC3F7">
-                            <animateMotion dur="3s" repeatCount="indefinite" begin="2s">
-                                <mpath href="#line3"/>
-                            </animateMotion>
-                        </circle>
+                        <!-- AutoSprint to AutoMCP -->
+                        <path id="line1" class="flow-line" marker-end="url(#arrowhead)"></path>
+
+                        <!-- AutoMCP to Keymaster -->
+                        <path id="line2" class="flow-line" marker-end="url(#arrowhead)"></path>
+
+                        <!-- AutoMCP to AutoRegistry -->
+                        <path id="line3" class="flow-line" marker-end="url(#arrowhead)"></path>
                     </svg>
 
                     <!-- AutoSprint - Flagship Center -->
@@ -547,45 +532,75 @@
             e.stopPropagation();
         });
 
-        // Draw pulse lines between AutoSprint and satellites
-        function updatePulseLines() {
+        // Draw flow lines with proper hierarchy
+        function updateFlowLines() {
+            const constellation = document.querySelector('.products-constellation');
+            if (!constellation) return;
+
+            const containerRect = constellation.getBoundingClientRect();
+
+            // Get elements
             const autosprint = document.getElementById('autosprint');
-            const satellites = ['automcp', 'keymaster', 'autoregistry'];
-            const lines = ['line1', 'line2', 'line3'];
+            const automcp = document.getElementById('automcp');
+            const keymaster = document.getElementById('keymaster');
+            const autoregistry = document.getElementById('autoregistry');
 
-            if (!autosprint) return;
+            if (!autosprint || !automcp) return;
 
-            const centerRect = autosprint.getBoundingClientRect();
-            const containerRect = autosprint.parentElement.getBoundingClientRect();
+            // Helper to get center position
+            function getCenter(element) {
+                const rect = element.getBoundingClientRect();
+                return {
+                    x: rect.left + rect.width - containerRect.left - 10,
+                    y: rect.top + rect.height / 2 - containerRect.top
+                };
+            }
 
-            const centerX = centerRect.left + centerRect.width / 2 - containerRect.left;
-            const centerY = centerRect.top + centerRect.height / 2 - containerRect.top;
+            function getCenterLeft(element) {
+                const rect = element.getBoundingClientRect();
+                return {
+                    x: rect.left - containerRect.left + 10,
+                    y: rect.top + rect.height / 2 - containerRect.top
+                };
+            }
 
-            satellites.forEach((satelliteId, index) => {
-                const satellite = document.getElementById(satelliteId);
-                if (!satellite) return;
+            // Draw AutoSprint -> AutoMCP
+            const line1 = document.getElementById('line1');
+            if (line1) {
+                const start = getCenter(autosprint);
+                const end = getCenterLeft(automcp);
+                line1.setAttribute('d', `M ${start.x} ${start.y} L ${end.x} ${end.y}`);
+            }
 
-                const satRect = satellite.getBoundingClientRect();
-                const satX = satRect.left + satRect.width / 2 - containerRect.left;
-                const satY = satRect.top + satRect.height / 2 - containerRect.top;
-
-                const line = document.getElementById(lines[index]);
-                if (line) {
-                    line.setAttribute('x1', centerX);
-                    line.setAttribute('y1', centerY);
-                    line.setAttribute('x2', satX);
-                    line.setAttribute('y2', satY);
-
-                    // Create path for the pulse dot animation
-                    line.setAttribute('d', `M ${centerX} ${centerY} L ${satX} ${satY}`);
+            // Draw AutoMCP -> Keymaster
+            if (keymaster) {
+                const line2 = document.getElementById('line2');
+                if (line2) {
+                    const start = getCenter(automcp);
+                    const end = getCenterLeft(keymaster);
+                    // Create curved path
+                    const midX = (start.x + end.x) / 2;
+                    line2.setAttribute('d', `M ${start.x} ${start.y} Q ${midX} ${start.y - 20}, ${end.x} ${end.y}`);
                 }
-            });
+            }
+
+            // Draw AutoMCP -> AutoRegistry
+            if (autoregistry) {
+                const line3 = document.getElementById('line3');
+                if (line3) {
+                    const start = getCenter(automcp);
+                    const end = getCenterLeft(autoregistry);
+                    // Create curved path
+                    const midX = (start.x + end.x) / 2;
+                    line3.setAttribute('d', `M ${start.x} ${start.y} Q ${midX} ${start.y + 20}, ${end.x} ${end.y}`);
+                }
+            }
         }
 
         // Update lines on load and resize
-        window.addEventListener('load', updatePulseLines);
-        window.addEventListener('resize', updatePulseLines);
-        setTimeout(updatePulseLines, 100);
+        window.addEventListener('load', updateFlowLines);
+        window.addEventListener('resize', updateFlowLines);
+        setTimeout(updateFlowLines, 100);
     </script>
 </body>
 </html>
