@@ -12,39 +12,53 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Critical inline CSS for immediate rendering */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { background: #0f0f23; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; background: #fff; line-height: 1.6; }
-        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 1.25rem 0; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.6; }
+
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: transparent; padding: 1.5rem 0; }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo-section { display: flex; align-items: center; gap: 0.75rem; }
-        .nav-logo { width: 32px; height: 32px; object-fit: contain; }
-        .nav-name { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
-        .nav-links { display: flex; gap: 2.5rem; }
-        .nav-link { color: #6b7280; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s ease; }
+        .logo-section { display: flex; align-items: center; gap: 0.5rem; }
+        .nav-logo { width: 28px; height: 28px; object-fit: contain; opacity: 0.9; }
+        .nav-name { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; color: white; }
+        .nav-link { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease; }
+        .nav-link:hover { color: white; }
+
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%); overflow: hidden; }
-        .hero-content { text-align: center; z-index: 2; padding: 2rem; }
-        .hero-logo { width: 120px; height: 120px; margin-bottom: 2rem; object-fit: contain; }
-        .hero-title { font-size: 4rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.5rem; background: linear-gradient(135deg, #4FC3F7 0%, #E91E63 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-subtitle { color: #e0e0e0; }
-        .hero-description { color: #b0b0b0; }
-        .btn-primary { background: linear-gradient(135deg, #4FC3F7 0%, #E91E63 100%); }
         .animated-bg { position: absolute; width: 100%; height: 100%; overflow: hidden; }
-        .gradient-sphere { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; animation: float-sphere 20s infinite ease-in-out; }
+        .gradient-sphere { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float-sphere 20s infinite ease-in-out; }
         .sphere-1 { width: 300px; height: 300px; background: linear-gradient(135deg, #4FC3F7 0%, #667eea 100%); top: -150px; left: -100px; animation-delay: 0s; }
         .sphere-2 { width: 400px; height: 400px; background: linear-gradient(135deg, #E91E63 0%, #f093fb 100%); bottom: -200px; right: -150px; animation-delay: 7s; }
         .sphere-3 { width: 250px; height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); top: 50%; left: 50%; animation-delay: 14s; }
         @keyframes float-sphere { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(100px, -50px) scale(1.1); } 66% { transform: translate(-50px, 100px) scale(0.9); } }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .section-title { font-size: 3rem; font-weight: 700; text-align: center; margin-bottom: 1rem; }
-        .products { padding: 6rem 0; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 4rem; }
-        .product-card { background: white; border-radius: 16px; padding: 2.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); border: 1px solid #e5e7eb; }
-        .footer { background: #1a1a1a; color: white; padding: 0.75rem 0; text-align: center; }
-        .footer-logo-img { width: 20px; height: auto; opacity: 0.9; display: inline-block; vertical-align: middle; margin-right: 0.25rem; }
+
+        .hero-content { text-align: center; z-index: 2; padding: 2rem; max-width: 900px; }
+        .hero-logo { width: 100px; height: 100px; margin-bottom: 1.5rem; object-fit: contain; filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1)); animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+
+        .hero-title { font-size: 3.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.5rem; background: linear-gradient(135deg, #4FC3F7 0%, #E91E63 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: 1.35rem; font-weight: 400; color: #e0e0e0; margin-bottom: 1rem; letter-spacing: 0.02em; }
+        .hero-description { font-size: 1rem; color: #b0b0b0; line-height: 1.7; margin: 0 auto 2rem; max-width: 500px; }
+
+        .products-inline { display: flex; gap: 2rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+        .product-pill { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1rem 1.5rem; backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .product-pill:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .product-pill h3 { color: white; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .product-pill p { color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; }
+
+        .footer { background: #0a0a0a; color: white; padding: 0.75rem 0; text-align: center; position: absolute; bottom: -100px; width: 100%; }
+        .footer-content { display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 0 2rem; }
+        .footer-logo-img { width: 16px; height: auto; opacity: 0.7; }
+        .footer-text { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .products-inline { gap: 1rem; }
+            .product-pill { padding: 0.75rem 1rem; }
+        }
     </style>
-    <link rel="stylesheet" href="assets/css/main.css?v=3.0">
+    <link rel="stylesheet" href="assets/css/main.css?v=4.0">
 </head>
 <body>
     <nav class="navbar">
@@ -53,11 +67,7 @@
                 <img src="images/screen2.png" alt="deeda" class="nav-logo">
                 <span class="nav-name">deeda</span>
             </div>
-            <div class="nav-links">
-                <a href="#products" class="nav-link">Products</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
+            <a href="mailto:hello@deeda.com" class="nav-link">Contact</a>
         </div>
     </nav>
 
@@ -72,124 +82,28 @@
             <h1 class="hero-title">deeda</h1>
             <p class="hero-subtitle">Advanced AI Engineering</p>
             <p class="hero-description">
-                Building intelligent systems that redefine possibilities.<br>
+                Building intelligent systems that amplify human potential.<br>
                 Dynamic End-to-End Data Aggregation.
             </p>
-            <div class="hero-cta">
-                <a href="#products" class="btn btn-primary">Explore Our Products</a>
+
+            <div class="products-inline">
+                <div class="product-pill">
+                    <h3>AutoSprint</h3>
+                    <p>Autonomous software that builds itself</p>
+                </div>
+                <div class="product-pill">
+                    <h3>TradeBrainz</h3>
+                    <p>Your personal AI hedge fund</p>
+                </div>
             </div>
         </div>
     </header>
 
-    <section id="products" class="products">
-        <div class="container">
-            <h2 class="section-title">Transformative AI Products</h2>
-            <p class="section-subtitle">Pioneering the future of autonomous systems</p>
-
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-icon">
-                        <div class="icon-placeholder icon-autosprint"></div>
-                    </div>
-                    <h3 class="product-name">AutoSprint</h3>
-                    <p class="product-tagline">Fully Autonomous Engineering</p>
-                    <p class="product-description">
-                        A tour de force in autonomous software development. Advanced AI controls for managing context, memory, and conversations - building software that builds itself.
-                    </p>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-icon">
-                        <div class="icon-placeholder icon-tradebrainz"></div>
-                    </div>
-                    <h3 class="product-name">TradeBrainz</h3>
-                    <p class="product-tagline">Your Personal Hedge Fund</p>
-                    <p class="product-description">
-                        Intelligent investment management with journaling tools and AI-powered introspection. Real-time support and demand levels for mastering market structure.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <h2 class="section-title">Engineering Tomorrow</h2>
-                <p class="about-text">
-                    deeda represents the convergence of neuroscience and artificial intelligence.
-                    Born from graduate research in Dynamic End-to-End Data Aggregation, we're building
-                    systems that don't just process information—they understand, learn, and evolve.
-                </p>
-                <p class="about-text">
-                    Our mission is simple: create AI that amplifies human potential,
-                    automates complexity, and delivers extraordinary outcomes.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="footer">
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/screen2.png" alt="deeda" class="footer-logo-img">
-                <span class="footer-name">deeda</span>
-            </div>
-            <p class="footer-location">Palo Alto, California</p>
-            <p class="copyright">&copy; 2025 deeda Inc. All rights reserved.</p>
-            <div class="social-links">
-                <a href="https://twitter.com/deeda" class="social-link" aria-label="Twitter">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                    </svg>
-                </a>
-            </div>
+            <img src="images/screen2.png" alt="deeda" class="footer-logo-img">
+            <span class="footer-text">© 2025 deeda Inc. • Palo Alto, California</span>
         </div>
     </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to navbar
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Add intersection observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all product cards and sections
-        document.querySelectorAll('.product-card, .section-title, .about-content').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
