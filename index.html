@@ -220,11 +220,154 @@
         .hero-subtitle { font-size: 1.35rem; font-weight: 400; color: #e0e0e0; margin-bottom: 1rem; letter-spacing: 0.02em; }
         .hero-description { font-size: 1rem; color: #b0b0b0; line-height: 1.7; margin: 0 auto 2rem; max-width: 500px; }
 
-        .products-inline { display: flex; gap: 2rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
-        .product-pill { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1rem 1.5rem; backdrop-filter: blur(10px); transition: all 0.3s ease; }
-        .product-pill:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
-        .product-pill h3 { color: white; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .product-pill p { color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; }
+        .products-constellation {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 500px;
+            margin: 3rem auto;
+        }
+
+        .product-node {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.25rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .product-node.flagship {
+            width: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(79, 195, 247, 0.08);
+            border: 2px solid rgba(79, 195, 247, 0.3);
+            box-shadow: 0 0 40px rgba(79, 195, 247, 0.2);
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 40px rgba(79, 195, 247, 0.2); }
+            50% { box-shadow: 0 0 60px rgba(79, 195, 247, 0.3); }
+        }
+
+        .product-node.satellite {
+            width: 160px;
+        }
+
+        .satellite-1 { top: 10%; left: 35%; }
+        .satellite-2 { top: 30%; left: 10%; }
+        .satellite-3 { top: 60%; left: 15%; }
+
+        .product-node.independent {
+            width: 180px;
+        }
+
+        .independent-1 {
+            top: 20%;
+            right: 10%;
+            background: rgba(233, 30, 99, 0.05);
+            border-color: rgba(233, 30, 99, 0.2);
+            animation: float-independent-1 6s ease-in-out infinite;
+        }
+
+        .independent-2 {
+            bottom: 15%;
+            right: 15%;
+            background: rgba(255, 152, 0, 0.05);
+            border-color: rgba(255, 152, 0, 0.2);
+            animation: float-independent-2 7s ease-in-out infinite;
+        }
+
+        @keyframes float-independent-1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes float-independent-2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .product-node:hover {
+            transform: scale(1.05) translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            z-index: 10;
+        }
+
+        .product-node.satellite:hover,
+        .product-node.independent:hover {
+            transform: scale(1.05);
+        }
+
+        .product-node h3 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .product-node p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        .product-node.flagship h3 { font-size: 1.3rem; }
+        .product-node.flagship p { font-size: 0.9rem; }
+
+        .pulse-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(79, 195, 247, 0.6), transparent);
+            transform-origin: left center;
+            pointer-events: none;
+            opacity: 0;
+            animation: pulse-line 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-line {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .pulse-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #4FC3F7;
+            border-radius: 50%;
+            animation: travel-pulse 3s linear infinite;
+            box-shadow: 0 0 10px rgba(79, 195, 247, 0.8);
+        }
+
+        @keyframes travel-pulse {
+            0% { offset-distance: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { offset-distance: 100%; opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .products-constellation {
+                height: 600px;
+            }
+            .product-node {
+                width: 140px !important;
+                padding: 1rem;
+            }
+            .product-node h3 { font-size: 0.95rem; }
+            .product-node p { font-size: 0.75rem; }
+            .satellite-1 { top: 5%; left: 50%; transform: translateX(-50%); }
+            .satellite-2 { top: 25%; left: 10%; }
+            .satellite-3 { top: 25%; right: 10%; }
+            .independent-1 { top: 65%; left: 15%; right: auto; }
+            .independent-2 { top: 65%; right: 15%; }
+        }
 
         .hero-footer {
             padding: 2rem 0 1.5rem;
@@ -288,28 +431,64 @@
                     Dynamic End-to-End Data Aggregation.
                 </p>
 
-                <div class="products-inline">
-                    <div class="product-pill">
+                <div class="products-constellation">
+                    <!-- Pulse lines connecting AutoSprint to satellites -->
+                    <svg class="pulse-lines" style="position: absolute; width: 100%; height: 100%; pointer-events: none;">
+                        <line class="pulse-line" id="line1" stroke="url(#gradient1)" stroke-width="1" opacity="0.5"></line>
+                        <line class="pulse-line" id="line2" stroke="url(#gradient1)" stroke-width="1" opacity="0.5"></line>
+                        <line class="pulse-line" id="line3" stroke="url(#gradient1)" stroke-width="1" opacity="0.5"></line>
+
+                        <defs>
+                            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#4FC3F7;stop-opacity:0" />
+                                <stop offset="50%" style="stop-color:#4FC3F7;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4FC3F7;stop-opacity:0" />
+                            </linearGradient>
+                        </defs>
+
+                        <circle class="pulse-dot" r="3" fill="#4FC3F7">
+                            <animateMotion dur="3s" repeatCount="indefinite">
+                                <mpath href="#line1"/>
+                            </animateMotion>
+                        </circle>
+                        <circle class="pulse-dot" r="3" fill="#4FC3F7">
+                            <animateMotion dur="3s" repeatCount="indefinite" begin="1s">
+                                <mpath href="#line2"/>
+                            </animateMotion>
+                        </circle>
+                        <circle class="pulse-dot" r="3" fill="#4FC3F7">
+                            <animateMotion dur="3s" repeatCount="indefinite" begin="2s">
+                                <mpath href="#line3"/>
+                            </animateMotion>
+                        </circle>
+                    </svg>
+
+                    <!-- AutoSprint - Flagship Center -->
+                    <div class="product-node flagship" id="autosprint">
                         <h3>AutoSprint</h3>
                         <p>Autonomous software engineering</p>
                     </div>
-                    <div class="product-pill">
-                        <h3>TradeBrainz</h3>
-                        <p>Your personal AI hedge fund</p>
-                    </div>
-                    <div class="product-pill">
+
+                    <!-- AutoSprint Suite Products -->
+                    <div class="product-node satellite satellite-1" id="automcp">
                         <h3>AutoMCP</h3>
                         <p>One call, infinite tools</p>
                     </div>
-                    <div class="product-pill">
+                    <div class="product-node satellite satellite-2" id="keymaster">
                         <h3>Keymaster</h3>
                         <p>Secure keys for AI Agents</p>
                     </div>
-                    <div class="product-pill">
+                    <div class="product-node satellite satellite-3" id="autoregistry">
                         <h3>AutoRegistry</h3>
                         <p>Every MCP tool - organized</p>
                     </div>
-                    <div class="product-pill">
+
+                    <!-- Independent Products -->
+                    <div class="product-node independent independent-1">
+                        <h3>TradeBrainz</h3>
+                        <p>Your personal AI hedge fund</p>
+                    </div>
+                    <div class="product-node independent independent-2">
                         <h3>Rocket Tabs</h3>
                         <p>Smart Payments on Poynt</p>
                     </div>
@@ -367,6 +546,46 @@
         document.getElementById('contactBubble').addEventListener('click', function(e) {
             e.stopPropagation();
         });
+
+        // Draw pulse lines between AutoSprint and satellites
+        function updatePulseLines() {
+            const autosprint = document.getElementById('autosprint');
+            const satellites = ['automcp', 'keymaster', 'autoregistry'];
+            const lines = ['line1', 'line2', 'line3'];
+
+            if (!autosprint) return;
+
+            const centerRect = autosprint.getBoundingClientRect();
+            const containerRect = autosprint.parentElement.getBoundingClientRect();
+
+            const centerX = centerRect.left + centerRect.width / 2 - containerRect.left;
+            const centerY = centerRect.top + centerRect.height / 2 - containerRect.top;
+
+            satellites.forEach((satelliteId, index) => {
+                const satellite = document.getElementById(satelliteId);
+                if (!satellite) return;
+
+                const satRect = satellite.getBoundingClientRect();
+                const satX = satRect.left + satRect.width / 2 - containerRect.left;
+                const satY = satRect.top + satRect.height / 2 - containerRect.top;
+
+                const line = document.getElementById(lines[index]);
+                if (line) {
+                    line.setAttribute('x1', centerX);
+                    line.setAttribute('y1', centerY);
+                    line.setAttribute('x2', satX);
+                    line.setAttribute('y2', satY);
+
+                    // Create path for the pulse dot animation
+                    line.setAttribute('d', `M ${centerX} ${centerY} L ${satX} ${satY}`);
+                }
+            });
+        }
+
+        // Update lines on load and resize
+        window.addEventListener('load', updatePulseLines);
+        window.addEventListener('resize', updatePulseLines);
+        setTimeout(updatePulseLines, 100);
     </script>
 </body>
 </html>
