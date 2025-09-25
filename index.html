@@ -130,11 +130,67 @@
             overflow: hidden;
         }
         .animated-bg { position: absolute; width: 100%; height: 100%; overflow: hidden; }
-        .gradient-sphere { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float-sphere 20s infinite ease-in-out; }
-        .sphere-1 { width: 300px; height: 300px; background: linear-gradient(135deg, #4FC3F7 0%, #667eea 100%); top: -150px; left: -100px; animation-delay: 0s; }
-        .sphere-2 { width: 400px; height: 400px; background: linear-gradient(135deg, #E91E63 0%, #f093fb 100%); bottom: -200px; right: -150px; animation-delay: 7s; }
-        .sphere-3 { width: 250px; height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); top: 50%; left: 50%; animation-delay: 14s; }
-        @keyframes float-sphere { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(100px, -50px) scale(1.1); } 66% { transform: translate(-50px, 100px) scale(0.9); } }
+        .gradient-sphere { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.25; }
+
+        .sphere-1 { width: 350px; height: 350px; background: linear-gradient(135deg, #4FC3F7 0%, #667eea 100%); animation: bounce-1 25s infinite linear; }
+        .sphere-2 { width: 400px; height: 400px; background: linear-gradient(135deg, #E91E63 0%, #f093fb 100%); animation: bounce-2 30s infinite linear; }
+        .sphere-3 { width: 250px; height: 250px; background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 100%); animation: bounce-3 20s infinite linear; }
+        .sphere-4 { width: 300px; height: 300px; background: linear-gradient(135deg, #6BCB77 0%, #4D96FF 100%); animation: bounce-4 28s infinite linear; }
+        .sphere-5 { width: 280px; height: 280px; background: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%); animation: bounce-5 22s infinite linear; }
+        .sphere-6 { width: 320px; height: 320px; background: linear-gradient(135deg, #B980F0 0%, #FE5F75 100%); animation: bounce-6 26s infinite linear; }
+        .sphere-7 { width: 200px; height: 200px; background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%); animation: bounce-7 18s infinite linear; }
+        .sphere-8 { width: 380px; height: 380px; background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%); animation: bounce-8 32s infinite linear; }
+
+        @keyframes bounce-1 {
+            0% { transform: translate(-100px, -100px); }
+            25% { transform: translate(calc(100vw - 200px), 100px); }
+            50% { transform: translate(calc(100vw - 100px), calc(100vh - 200px)); }
+            75% { transform: translate(100px, calc(100vh - 100px)); }
+            100% { transform: translate(-100px, -100px); }
+        }
+        @keyframes bounce-2 {
+            0% { transform: translate(calc(100vw - 200px), -200px); }
+            33% { transform: translate(-200px, calc(100vh - 200px)); }
+            66% { transform: translate(calc(100vw - 100px), 200px); }
+            100% { transform: translate(calc(100vw - 200px), -200px); }
+        }
+        @keyframes bounce-3 {
+            0% { transform: translate(50vw, -100px); }
+            25% { transform: translate(calc(100vw - 100px), 50vh); }
+            50% { transform: translate(50vw, calc(100vh - 100px)); }
+            75% { transform: translate(-100px, 50vh); }
+            100% { transform: translate(50vw, -100px); }
+        }
+        @keyframes bounce-4 {
+            0% { transform: translate(-150px, 30vh); }
+            30% { transform: translate(60vw, -150px); }
+            60% { transform: translate(calc(100vw - 150px), 60vh); }
+            100% { transform: translate(-150px, 30vh); }
+        }
+        @keyframes bounce-5 {
+            0% { transform: translate(80vw, calc(100vh - 140px)); }
+            35% { transform: translate(-140px, 70vh); }
+            70% { transform: translate(40vw, -140px); }
+            100% { transform: translate(80vw, calc(100vh - 140px)); }
+        }
+        @keyframes bounce-6 {
+            0% { transform: translate(20vw, -160px); }
+            40% { transform: translate(calc(100vw - 160px), 40vh); }
+            80% { transform: translate(60vw, calc(100vh - 160px)); }
+            100% { transform: translate(20vw, -160px); }
+        }
+        @keyframes bounce-7 {
+            0% { transform: translate(calc(100vw - 100px), 80vh); }
+            50% { transform: translate(-100px, 20vh); }
+            100% { transform: translate(calc(100vw - 100px), 80vh); }
+        }
+        @keyframes bounce-8 {
+            0% { transform: translate(30vw, calc(100vh - 190px)); }
+            25% { transform: translate(-190px, 10vh); }
+            50% { transform: translate(70vw, -190px); }
+            75% { transform: translate(calc(100vw - 190px), 50vh); }
+            100% { transform: translate(30vw, calc(100vh - 190px)); }
+        }
 
         .hero-content {
             text-align: center;
@@ -216,6 +272,11 @@
             <div class="gradient-sphere sphere-1"></div>
             <div class="gradient-sphere sphere-2"></div>
             <div class="gradient-sphere sphere-3"></div>
+            <div class="gradient-sphere sphere-4"></div>
+            <div class="gradient-sphere sphere-5"></div>
+            <div class="gradient-sphere sphere-6"></div>
+            <div class="gradient-sphere sphere-7"></div>
+            <div class="gradient-sphere sphere-8"></div>
         </div>
         <div class="hero-content">
             <div class="hero-main">
