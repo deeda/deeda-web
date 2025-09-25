@@ -17,6 +17,10 @@
     --gradient-3: linear-gradient(135deg, #4FC3F7 0%, #E91E63 100%);
 }
 
+html {
+    background: #0f0f23;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: var(--text-primary);
