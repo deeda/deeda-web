@@ -438,8 +438,7 @@ body {
 
 .footer-logo-img {
     width: 20px;
-    height: 20px;
-    object-fit: contain;
+    height: auto;
     display: inline-block;
     vertical-align: middle;
 }
