@@ -136,7 +136,7 @@ body {
 
 .hero-logo {
     width: 120px;
-    height: 120px;
+    height: auto;
     margin-bottom: 2rem;
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
     animation: float 6s ease-in-out infinite;
@@ -343,15 +343,6 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.product-status {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: var(--surface);
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-}
 
 /* About Section */
 .about {
@@ -388,7 +379,7 @@ body {
 .footer {
     background: var(--text-primary);
     color: white;
-    padding: 4rem 0;
+    padding: 2rem 0;
     text-align: center;
 }
 
@@ -402,32 +393,31 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .footer-logo-img {
-    width: 40px;
-    height: 40px;
-    filter: brightness(0) invert(1);
-    opacity: 0.9;
+    width: 30px;
+    height: auto;
 }
 
 .footer-name {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
     opacity: 0.95;
 }
 
 .footer-location {
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
 .copyright {
     color: rgba(255, 255, 255, 0.5);
-    font-size: 0.875rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
 }
 
 .social-links {
