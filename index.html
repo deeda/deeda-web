@@ -89,10 +89,12 @@
         .nav-logo { width: 24px; height: 24px; object-fit: contain; }
         .nav-name { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; color: rgba(255, 255, 255, 0.9); }
         .nav-link {
+            font-family: 'Merriweather', 'Georgia', serif;
             color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 300;
+            font-style: normal;
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
@@ -516,6 +518,8 @@
         }
 
         .hero-footer {
+            font-family: 'Merriweather', 'Georgia', serif;
+            font-weight: 300;
             padding: 2rem 0 1.5rem;
             display: flex;
             align-items: center;
@@ -525,12 +529,18 @@
             font-size: 0.75rem;
         }
         .hero-footer-logo { width: 14px; height: auto; opacity: 0.5; }
-        .hero-footer a { color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.2s ease; }
+        .hero-footer a {
+            font-family: 'Merriweather', 'Georgia', serif;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
         .hero-footer a:hover { color: rgba(255, 255, 255, 0.7); }
 
         @media (max-width: 768px) {
             .logo-tagline {
-                font-size: 0.5rem;
+                font-size: 0.65rem;
                 letter-spacing: 0.03em;
             }
             .nav-link-text {
@@ -584,7 +594,7 @@
 
         @media (max-width: 480px) {
             .logo-tagline {
-                font-size: 0.45rem;
+                font-size: 0.6rem;
             }
             .hero-content {
                 padding-top: 70px; /* Keep consistent with navbar height */
