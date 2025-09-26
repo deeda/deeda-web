@@ -101,6 +101,9 @@
             color: rgba(255, 255, 255, 0.9);
             text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
         }
+        .nav-link-icon {
+            display: none;
+        }
 
         .contact-dropdown {
             position: relative;
@@ -527,7 +530,14 @@
 
         @media (max-width: 768px) {
             .logo-tagline {
+                font-size: 0.5rem;
+                letter-spacing: 0.03em;
+            }
+            .nav-link-text {
                 display: none;
+            }
+            .nav-link-icon {
+                display: inline-block;
             }
             .navbar {
                 padding: 0.75rem 0; /* Slightly smaller navbar on mobile */
@@ -573,6 +583,9 @@
         }
 
         @media (max-width: 480px) {
+            .logo-tagline {
+                font-size: 0.45rem;
+            }
             .hero-content {
                 padding-top: 70px; /* Keep consistent with navbar height */
                 padding-left: 1.25rem;
@@ -615,7 +628,13 @@
                 <span class="logo-tagline">artificial intelligence labs</span>
             </div>
             <div class="contact-dropdown">
-                <span class="nav-link" onclick="toggleContact(event)">Contact</span>
+                <span class="nav-link nav-link-text" onclick="toggleContact(event)">Contact</span>
+                <span class="nav-link nav-link-icon" onclick="toggleContact(event)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-10 5L2 7"/>
+                    </svg>
+                </span>
                 <div id="contactBubble" class="cloud-bubble">
                     <div class="cloud-content">
                         <div class="email-label">Say hello</div>
