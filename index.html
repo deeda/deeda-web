@@ -467,6 +467,8 @@
             <div class="sphere-eureka sphere-eureka-1" id="eureka1"></div>
             <div class="sphere-eureka sphere-eureka-2" id="eureka2"></div>
             <div class="sphere-eureka sphere-eureka-3" id="eureka3"></div>
+            <div class="sphere-eureka sphere-eureka-1" id="eureka4"></div>
+            <div class="sphere-eureka sphere-eureka-2" id="eureka5"></div>
         </div>
         <div class="hero-content">
             <div class="hero-main">
@@ -583,41 +585,51 @@
             }
 
             getRandomDelay() {
-                return Date.now() + (3000 + Math.random() * 4000); // 3-7 seconds
+                return Date.now() + (1500 + Math.random() * 2000); // 1.5-3.5 seconds - much more frequent!
             }
 
             reset() {
-                // Get sphere size (default to 130 if not computed yet)
-                const size = parseInt(window.getComputedStyle(this.element).width) || 130;
-                const offset = size * 1.5; // Just 1.5 ball widths off screen
+                // Sometimes start ON screen for immediate visibility
+                const startOnScreen = Math.random() < 0.3; // 30% chance to start visible
 
-                // Random starting position just barely off screen
-                const side = Math.floor(Math.random() * 4);
-                switch(side) {
-                    case 0: // top
-                        this.x = Math.random() * window.innerWidth;
-                        this.y = -offset;
-                        this.vx = (Math.random() - 0.5) * 0.3;
-                        this.vy = 0.2 + Math.random() * 0.3; // Drift downward into view
-                        break;
-                    case 1: // right
-                        this.x = window.innerWidth + offset;
-                        this.y = Math.random() * window.innerHeight;
-                        this.vx = -(0.2 + Math.random() * 0.3); // Drift leftward into view
-                        this.vy = (Math.random() - 0.5) * 0.3;
-                        break;
-                    case 2: // bottom
-                        this.x = Math.random() * window.innerWidth;
-                        this.y = window.innerHeight + offset;
-                        this.vx = (Math.random() - 0.5) * 0.3;
-                        this.vy = -(0.2 + Math.random() * 0.3); // Drift upward into view
-                        break;
-                    case 3: // left
-                        this.x = -offset;
-                        this.y = Math.random() * window.innerHeight;
-                        this.vx = 0.2 + Math.random() * 0.3; // Drift rightward into view
-                        this.vy = (Math.random() - 0.5) * 0.3;
-                        break;
+                if (startOnScreen) {
+                    // Start somewhere on screen
+                    this.x = Math.random() * window.innerWidth;
+                    this.y = Math.random() * window.innerHeight;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                } else {
+                    // Start just off screen
+                    const size = parseInt(window.getComputedStyle(this.element).width) || 130;
+                    const offset = size * 0.8; // Even closer to edge
+
+                    const side = Math.floor(Math.random() * 4);
+                    switch(side) {
+                        case 0: // top
+                            this.x = Math.random() * window.innerWidth;
+                            this.y = -offset;
+                            this.vx = (Math.random() - 0.5) * 0.5;
+                            this.vy = 0.3 + Math.random() * 0.5; // Faster drift in
+                            break;
+                        case 1: // right
+                            this.x = window.innerWidth + offset;
+                            this.y = Math.random() * window.innerHeight;
+                            this.vx = -(0.3 + Math.random() * 0.5); // Faster drift in
+                            this.vy = (Math.random() - 0.5) * 0.5;
+                            break;
+                        case 2: // bottom
+                            this.x = Math.random() * window.innerWidth;
+                            this.y = window.innerHeight + offset;
+                            this.vx = (Math.random() - 0.5) * 0.5;
+                            this.vy = -(0.3 + Math.random() * 0.5); // Faster drift in
+                            break;
+                        case 3: // left
+                            this.x = -offset;
+                            this.y = Math.random() * window.innerHeight;
+                            this.vx = 0.3 + Math.random() * 0.5; // Faster drift in
+                            this.vy = (Math.random() - 0.5) * 0.5;
+                            break;
+                    }
                 }
 
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
@@ -650,29 +662,12 @@
                     this.x += this.vx;
                     this.y += this.vy;
 
-                    // Gentle bounce off edges during drift
-                    const size = parseInt(window.getComputedStyle(this.element).width) || 130;
-                    if (this.x < -size/2 || this.x > window.innerWidth + size/2) this.vx *= -0.8;
-                    if (this.y < -size/2 || this.y > window.innerHeight + size/2) this.vy *= -0.8;
-
                     this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
 
-                    // Trigger eureka if it's time and sphere is at least partially visible
+                    // Simply trigger eureka when it's time - no visibility check needed
                     if (Date.now() > this.nextEurekaTime) {
-                        // More lenient check - just needs to be somewhat on screen
-                        if (this.x > -size && this.x < window.innerWidth + size &&
-                            this.y > -size && this.y < window.innerHeight + size) {
-                            console.log('Triggering eureka!', this.x, this.y);
-                            this.triggerEureka();
-                        }
-                    }
-
-                    // Reset if sphere drifts way off screen
-                    if (this.x < -size * 2 || this.x > window.innerWidth + size * 2 ||
-                        this.y < -size * 2 || this.y > window.innerHeight + size * 2) {
-                        console.log('Resetting sphere - too far off screen');
-                        this.reset();
-                        this.nextEurekaTime = this.getRandomDelay();
+                        console.log('Triggering eureka at position:', this.x, this.y);
+                        this.triggerEureka();
                     }
                 }
 
@@ -706,24 +701,20 @@
             }
         }
 
-        // Initialize eureka spheres immediately (don't wait for DOMContentLoaded)
-        // since the script is at the bottom of the page
+        // Initialize all eureka spheres
         const initEurekaSpheres = () => {
-            const eureka1 = document.getElementById('eureka1');
-            const eureka2 = document.getElementById('eureka2');
-            const eureka3 = document.getElementById('eureka3');
-
-            if (eureka1 && eureka2 && eureka3) {
-                console.log('Initializing eureka spheres...');
-                new EurekaSphere(eureka1);
-                new EurekaSphere(eureka2);
-                new EurekaSphere(eureka3);
-            } else {
-                console.error('Could not find eureka sphere elements');
+            console.log('Initializing eureka spheres...');
+            for (let i = 1; i <= 5; i++) {
+                const sphere = document.getElementById('eureka' + i);
+                if (sphere) {
+                    // Stagger the initial delays so they don't all trigger at once
+                    const instance = new EurekaSphere(sphere);
+                    instance.nextEurekaTime = Date.now() + (1000 * i + Math.random() * 2000);
+                }
             }
         };
 
-        // Try immediate init since script is after elements
+        // Initialize immediately
         initEurekaSpheres();
 
     </script>
