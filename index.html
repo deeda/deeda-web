@@ -310,51 +310,30 @@
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 
         .hero-tagline-container {
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            text-align: left;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
         }
         .hero-tagline {
             font-family: 'Merriweather', 'Georgia', serif;
-            font-size: 1.75rem;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 700;
             font-style: italic;
-            color: #e0e0e0;
-            line-height: 1.4;
-            margin-bottom: 0.5rem;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 0;
         }
         .hero-tagline .line {
             display: block;
         }
         .hero-tagline .line:nth-child(2) {
-            margin-left: 2.5rem;
+            margin-left: 4rem;
         }
         .hero-tagline .line:nth-child(3) {
-            margin-left: 5rem;
+            margin-left: 8rem;
         }
         .hero-tagline .line:nth-child(4) {
-            margin-left: 7.5rem;
-        }
-        .hero-tagline .through {
-            display: block;
-            font-size: 1.5rem;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-            color: #b0b0b0;
-        }
-        .hero-title {
-            font-family: 'Merriweather', 'Georgia', serif;
-            font-size: clamp(1.5rem, 4vw, 3rem);
-            font-weight: 300;
-            font-style: normal;
-            letter-spacing: -0.02em;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, #E91E63 0%, #4FC3F7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: float 6s ease-in-out infinite;
-            text-align: left;
+            margin-left: 12rem;
         }
 
         .products-grid {
@@ -547,23 +526,17 @@
                 padding: 0 1rem;
             }
             .hero-tagline {
-                font-size: 1.4rem;
+                font-size: 2rem;
+                text-align: left;
             }
             .hero-tagline .line:nth-child(2) {
-                margin-left: 1.5rem;
+                margin-left: 1rem;
             }
             .hero-tagline .line:nth-child(3) {
-                margin-left: 3rem;
+                margin-left: 2rem;
             }
             .hero-tagline .line:nth-child(4) {
-                margin-left: 4.5rem;
-            }
-            .hero-tagline .through {
-                font-size: 1.2rem;
-            }
-            .hero-title {
-                font-size: 1.5rem;
-                line-height: 1.3;
+                margin-left: 3rem;
             }
             .products-grid {
                 padding: 0 1.5rem;
@@ -581,22 +554,17 @@
                 padding-top: 0.5rem; /* Slightly less padding on smaller screens */
             }
             .hero-tagline {
-                font-size: 1.2rem;
+                font-size: 1.75rem;
+                text-align: left;
             }
             .hero-tagline .line:nth-child(2) {
-                margin-left: 1rem;
+                margin-left: 0.75rem;
             }
             .hero-tagline .line:nth-child(3) {
-                margin-left: 2rem;
+                margin-left: 1.5rem;
             }
             .hero-tagline .line:nth-child(4) {
-                margin-left: 3rem;
-            }
-            .hero-tagline .through {
-                font-size: 1rem;
-            }
-            .hero-title {
-                font-size: 1.25rem;
+                margin-left: 2.25rem;
             }
             .products-grid {
                 padding: 0 1.25rem;
@@ -648,9 +616,7 @@
                         <span class="line">intelligent systems</span>
                         <span class="line">that amplify</span>
                         <span class="line">human potential</span>
-                        <span class="through">through...</span>
                     </div>
-                    <h1 class="hero-title">Dynamic End-to-End Data Aggregation</h1>
                 </div>
 
                 <div class="products-grid">
