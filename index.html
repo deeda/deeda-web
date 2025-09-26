@@ -133,14 +133,42 @@
         .animated-bg { position: absolute; width: 100%; height: 100%; overflow: hidden; }
         .gradient-sphere { position: absolute; border-radius: 50%; filter: blur(50px); opacity: 0.3; }
 
-        .sphere-1 { width: 175px; height: 175px; background: linear-gradient(135deg, #4FC3F7 0%, #667eea 100%); animation: bounce-1 30s infinite linear; }
-        .sphere-2 { width: 200px; height: 200px; background: linear-gradient(135deg, #E91E63 0%, #f093fb 100%); animation: bounce-2 36s infinite linear; }
-        .sphere-3 { width: 125px; height: 125px; background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 100%); animation: bounce-3 24s infinite linear; }
-        .sphere-4 { width: 150px; height: 150px; background: linear-gradient(135deg, #6BCB77 0%, #4D96FF 100%); animation: bounce-4 34s infinite linear; }
-        .sphere-5 { width: 140px; height: 140px; background: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%); animation: bounce-5 26s infinite linear; }
-        .sphere-6 { width: 160px; height: 160px; background: linear-gradient(135deg, #B980F0 0%, #FE5F75 100%); animation: bounce-6 31s infinite linear; }
-        .sphere-7 { width: 100px; height: 100px; background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%); animation: bounce-7 22s infinite linear; }
-        .sphere-8 { width: 190px; height: 190px; background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%); animation: bounce-8 38s infinite linear; }
+        .sphere-1 { width: 175px; height: 175px; background: linear-gradient(135deg, #4FC3F7 0%, #667eea 100%); animation: bounce-1 60s infinite linear; }
+        .sphere-2 { width: 200px; height: 200px; background: linear-gradient(135deg, #E91E63 0%, #f093fb 100%); animation: bounce-2 72s infinite linear; }
+        .sphere-3 { width: 125px; height: 125px; background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 100%); animation: bounce-3 48s infinite linear; }
+        .sphere-4 { width: 150px; height: 150px; background: linear-gradient(135deg, #6BCB77 0%, #4D96FF 100%); animation: bounce-4 68s infinite linear; }
+        .sphere-5 { width: 140px; height: 140px; background: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%); animation: bounce-5 52s infinite linear; }
+        .sphere-6 { width: 160px; height: 160px; background: linear-gradient(135deg, #B980F0 0%, #FE5F75 100%); animation: bounce-6 62s infinite linear; }
+        .sphere-7 { width: 100px; height: 100px; background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%); animation: bounce-7 44s infinite linear; }
+        .sphere-8 { width: 190px; height: 190px; background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%); animation: bounce-8 76s infinite linear; }
+
+        /* The Eureka Spheres - Brilliant ideas that zip across */
+        .sphere-eureka {
+            width: 130px;
+            height: 130px;
+            background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500, #FF6347);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            animation: eureka-zip-1 7s infinite;
+            animation-delay: 2s;
+        }
+
+        .sphere-eureka-2 {
+            width: 110px;
+            height: 110px;
+            background: radial-gradient(circle at 30% 30%, #00FFFF, #00CED1, #4682B4);
+            box-shadow: 0 0 35px rgba(0, 255, 255, 0.5);
+            animation: eureka-zip-2 9s infinite;
+            animation-delay: 5s;
+        }
+
+        .sphere-eureka-3 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at 30% 30%, #FF69B4, #FF1493, #C71585);
+            box-shadow: 0 0 45px rgba(255, 105, 180, 0.5);
+            animation: eureka-zip-3 6s infinite;
+            animation-delay: 0s;
+        }
 
         @keyframes bounce-1 {
             0% { transform: translate(-100px, -100px); }
@@ -191,6 +219,82 @@
             50% { transform: translate(70vw, -190px); }
             75% { transform: translate(calc(100vw - 190px), 50vh); }
             100% { transform: translate(30vw, calc(100vh - 190px)); }
+        }
+
+        /* Eureka animations - slow drift then sudden zip at different angles */
+        @keyframes eureka-zip-1 {
+            0%, 100% {
+                transform: translate(20vw, 60vh);
+                opacity: 0;
+            }
+            10% {
+                transform: translate(20vw, 60vh);
+                opacity: 0.3;
+            }
+            65% {
+                transform: translate(45vw, 50vh);
+                opacity: 0.3;
+            }
+            70% {
+                transform: translate(47vw, 48vh) scale(1.3);
+                opacity: 0.6;
+                filter: blur(30px) brightness(1.8);
+            }
+            73% {
+                transform: translate(150vw, -30vh) scale(0.5);
+                opacity: 0;
+                filter: blur(10px) brightness(3);
+            }
+        }
+
+        @keyframes eureka-zip-2 {
+            0%, 100% {
+                transform: translate(70vw, 20vh);
+                opacity: 0;
+            }
+            5% {
+                transform: translate(70vw, 20vh);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(50vw, 40vh);
+                opacity: 0.3;
+            }
+            55% {
+                transform: translate(48vw, 42vh) scale(1.4);
+                opacity: 0.6;
+                filter: blur(30px) brightness(1.8);
+            }
+            57% {
+                transform: translate(-50vw, 120vh) scale(0.4);
+                opacity: 0;
+                filter: blur(10px) brightness(3);
+            }
+        }
+
+        @keyframes eureka-zip-3 {
+            0%, 100% {
+                transform: translate(10vw, 80vh);
+                opacity: 0;
+            }
+            15% {
+                transform: translate(10vw, 80vh);
+                opacity: 0.3;
+            }
+            75% {
+                transform: translate(60vw, 30vh);
+                opacity: 0.3;
+            }
+            80% {
+                transform: translate(62vw, 28vh) scale(1.5);
+                opacity: 0.6;
+                filter: blur(30px) brightness(1.8);
+            }
+            82% {
+                transform: translate(130vw, -50vh) scale(0.3) rotate(45deg);
+                opacity: 0;
+                filter: blur(10px) brightness(3);
+            }
         }
 
         .hero-content {
@@ -421,6 +525,9 @@
             <div class="gradient-sphere sphere-6"></div>
             <div class="gradient-sphere sphere-7"></div>
             <div class="gradient-sphere sphere-8"></div>
+            <div class="gradient-sphere sphere-eureka"></div>
+            <div class="gradient-sphere sphere-eureka-2"></div>
+            <div class="gradient-sphere sphere-eureka-3"></div>
         </div>
         <div class="hero-content">
             <div class="hero-main">
