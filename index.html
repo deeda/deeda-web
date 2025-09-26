@@ -302,17 +302,18 @@
         }
 
         .product-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             padding: 1.25rem;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(30px) saturate(150%);
+            -webkit-backdrop-filter: blur(30px) saturate(150%);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            border: 1px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             background-clip: padding-box;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
         }
 
         /* Gradient border effect */
@@ -332,10 +333,10 @@
 
         .product-card.flagship {
             grid-column: span 3;
-            background: linear-gradient(135deg, rgba(79, 195, 247, 0.08) 0%, rgba(79, 195, 247, 0.02) 100%);
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.12) 0%, rgba(79, 195, 247, 0.05) 100%);
             text-align: center;
             padding: 2rem;
-            box-shadow: 0 0 40px rgba(79, 195, 247, 0.1);
+            box-shadow: 0 4px 30px rgba(79, 195, 247, 0.15);
         }
 
         .product-card.flagship::before {
@@ -343,7 +344,7 @@
         }
 
         .product-card.suite {
-            background: linear-gradient(135deg, rgba(79, 195, 247, 0.06) 0%, rgba(79, 195, 247, 0.01) 100%);
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.08) 0%, rgba(79, 195, 247, 0.03) 100%);
         }
 
         .product-card.suite::before {
@@ -351,18 +352,18 @@
         }
 
         /* Only override colors, not layout */
-        .product-card.flagship.independent-pink {
-            background: linear-gradient(135deg, rgba(233, 30, 99, 0.08) 0%, rgba(233, 30, 99, 0.02) 100%);
-            box-shadow: 0 0 40px rgba(233, 30, 99, 0.1);
+        .product-card.flagship.independent-green {
+            background: linear-gradient(135deg, rgba(76, 247, 167, 0.12) 0%, rgba(76, 247, 167, 0.05) 100%);
+            box-shadow: 0 4px 30px rgba(76, 247, 167, 0.15);
         }
 
-        .product-card.flagship.independent-pink::before {
-            background: linear-gradient(135deg, rgba(233, 30, 99, 0.4) 0%, rgba(233, 30, 99, 0.1) 100%);
+        .product-card.flagship.independent-green::before {
+            background: linear-gradient(135deg, rgba(76, 247, 167, 0.4) 0%, rgba(76, 247, 167, 0.1) 100%);
         }
 
         .product-card.flagship.independent-orange {
-            background: linear-gradient(135deg, rgba(255, 152, 0, 0.08) 0%, rgba(255, 152, 0, 0.02) 100%);
-            box-shadow: 0 0 40px rgba(255, 152, 0, 0.1);
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.12) 0%, rgba(255, 152, 0, 0.05) 100%);
+            box-shadow: 0 4px 30px rgba(255, 152, 0, 0.15);
         }
 
         .product-card.flagship.independent-orange::before {
@@ -371,8 +372,9 @@
 
         .product-card:hover {
             transform: translateY(-6px) scale(1.02);
-            background: rgba(255, 255, 255, 0.04);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 80px rgba(79, 195, 247, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 80px rgba(79, 195, 247, 0.2);
+            border-color: rgba(255, 255, 255, 0.15);
         }
 
         .product-card:hover::before {
@@ -586,7 +588,7 @@
                     </div>
 
                     <!-- TradeBrainz - Primary Product -->
-                    <div class="product-card flagship independent-pink">
+                    <div class="product-card flagship independent-green">
                         <h3>TradeBrainz</h3>
                         <p>Your personal AI hedge fund - sophisticated trading strategies powered by advanced AI</p>
                     </div>
