@@ -133,14 +133,14 @@
         .animated-bg { position: absolute; width: 100%; height: 100%; overflow: hidden; }
         .gradient-sphere { position: absolute; border-radius: 50%; filter: blur(50px); opacity: 0.3; }
 
-        .sphere-1 { width: 175px; height: 175px; background: linear-gradient(135deg, #4FC3F7 0%, #667eea 100%); animation: bounce-1 60s infinite linear; }
-        .sphere-2 { width: 200px; height: 200px; background: linear-gradient(135deg, #E91E63 0%, #f093fb 100%); animation: bounce-2 72s infinite linear; }
-        .sphere-3 { width: 125px; height: 125px; background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 100%); animation: bounce-3 48s infinite linear; }
-        .sphere-4 { width: 150px; height: 150px; background: linear-gradient(135deg, #6BCB77 0%, #4D96FF 100%); animation: bounce-4 68s infinite linear; }
-        .sphere-5 { width: 140px; height: 140px; background: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%); animation: bounce-5 52s infinite linear; }
-        .sphere-6 { width: 160px; height: 160px; background: linear-gradient(135deg, #B980F0 0%, #FE5F75 100%); animation: bounce-6 62s infinite linear; }
-        .sphere-7 { width: 100px; height: 100px; background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%); animation: bounce-7 44s infinite linear; }
-        .sphere-8 { width: 190px; height: 190px; background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%); animation: bounce-8 76s infinite linear; }
+        .sphere-1 { width: 175px; height: 175px; background: linear-gradient(135deg, #4FC3F7 0%, #667eea 100%); animation: bounce-1 78s infinite linear; }
+        .sphere-2 { width: 200px; height: 200px; background: linear-gradient(135deg, #E91E63 0%, #f093fb 100%); animation: bounce-2 94s infinite linear; }
+        .sphere-3 { width: 125px; height: 125px; background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 100%); animation: bounce-3 62s infinite linear; }
+        .sphere-4 { width: 150px; height: 150px; background: linear-gradient(135deg, #6BCB77 0%, #4D96FF 100%); animation: bounce-4 88s infinite linear; }
+        .sphere-5 { width: 140px; height: 140px; background: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%); animation: bounce-5 68s infinite linear; }
+        .sphere-6 { width: 160px; height: 160px; background: linear-gradient(135deg, #B980F0 0%, #FE5F75 100%); animation: bounce-6 81s infinite linear; }
+        .sphere-7 { width: 100px; height: 100px; background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%); animation: bounce-7 57s infinite linear; }
+        .sphere-8 { width: 190px; height: 190px; background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%); animation: bounce-8 99s infinite linear; }
 
         /* The Eureka Spheres - Brilliant ideas that zip across */
         .sphere-eureka {
@@ -585,7 +585,7 @@
             }
 
             getRandomDelay() {
-                return Date.now() + (1500 + Math.random() * 2000); // 1.5-3.5 seconds - much more frequent!
+                return Date.now() + (20000 + Math.random() * 10000); // 20-30 seconds per sphere = ~1 eureka every 5 seconds with 5 spheres
             }
 
             reset() {
@@ -707,9 +707,9 @@
             for (let i = 1; i <= 5; i++) {
                 const sphere = document.getElementById('eureka' + i);
                 if (sphere) {
-                    // Stagger the initial delays so they don't all trigger at once
+                    // Stagger the initial delays evenly across first 25 seconds
                     const instance = new EurekaSphere(sphere);
-                    instance.nextEurekaTime = Date.now() + (1000 * i + Math.random() * 2000);
+                    instance.nextEurekaTime = Date.now() + (5000 * i + Math.random() * 3000);
                 }
             }
         };
