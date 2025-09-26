@@ -582,39 +582,65 @@
             }
 
             getRandomDelay() {
-                return Date.now() + (5000 + Math.random() * 5000); // 5-10 seconds
+                return Date.now() + (3000 + Math.random() * 4000); // 3-7 seconds
             }
 
             reset() {
-                // Random starting position at edge of screen
+                // Get sphere size
+                const size = parseInt(window.getComputedStyle(this.element).width);
+                const offset = size * 1.5; // Just 1.5 ball widths off screen
+
+                // Random starting position just barely off screen
                 const side = Math.floor(Math.random() * 4);
                 switch(side) {
                     case 0: // top
                         this.x = Math.random() * window.innerWidth;
-                        this.y = -150;
+                        this.y = -offset;
+                        this.vx = (Math.random() - 0.5) * 0.3;
+                        this.vy = 0.2 + Math.random() * 0.3; // Drift downward into view
                         break;
                     case 1: // right
-                        this.x = window.innerWidth + 150;
+                        this.x = window.innerWidth + offset;
                         this.y = Math.random() * window.innerHeight;
+                        this.vx = -(0.2 + Math.random() * 0.3); // Drift leftward into view
+                        this.vy = (Math.random() - 0.5) * 0.3;
                         break;
                     case 2: // bottom
                         this.x = Math.random() * window.innerWidth;
-                        this.y = window.innerHeight + 150;
+                        this.y = window.innerHeight + offset;
+                        this.vx = (Math.random() - 0.5) * 0.3;
+                        this.vy = -(0.2 + Math.random() * 0.3); // Drift upward into view
                         break;
                     case 3: // left
-                        this.x = -150;
+                        this.x = -offset;
                         this.y = Math.random() * window.innerHeight;
+                        this.vx = 0.2 + Math.random() * 0.3; // Drift rightward into view
+                        this.vy = (Math.random() - 0.5) * 0.3;
                         break;
                 }
 
-                // Random slow drift velocity
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+                this.element.style.opacity = '0';
                 this.element.classList.remove('zipping');
                 this.element.classList.add('drifting');
                 this.isActive = true;
+
+                // Fade in after position is set
+                setTimeout(() => {
+                    this.element.style.opacity = '';
+                }, 100);
+            }
+
+            isVisible() {
+                const size = parseInt(window.getComputedStyle(this.element).width);
+                return this.x > -size && this.x < window.innerWidth + size &&
+                       this.y > -size && this.y < window.innerHeight + size;
+            }
+
+            isFullyVisible() {
+                const size = parseInt(window.getComputedStyle(this.element).width);
+                return this.x > size/2 && this.x < window.innerWidth - size/2 &&
+                       this.y > size/2 && this.y < window.innerHeight - size/2;
             }
 
             animate() {
@@ -623,15 +649,22 @@
                     this.x += this.vx;
                     this.y += this.vy;
 
-                    // Bounce off edges during drift
-                    if (this.x < 0 || this.x > window.innerWidth) this.vx *= -1;
-                    if (this.y < 0 || this.y > window.innerHeight) this.vy *= -1;
+                    // Gentle bounce off edges during drift
+                    const size = parseInt(window.getComputedStyle(this.element).width);
+                    if (this.x < -size/2 || this.x > window.innerWidth + size/2) this.vx *= -0.8;
+                    if (this.y < -size/2 || this.y > window.innerHeight + size/2) this.vy *= -0.8;
 
                     this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
 
-                    // Check if it's time for eureka moment
-                    if (Date.now() > this.nextEurekaTime) {
+                    // Only trigger eureka if sphere is fully visible and it's time
+                    if (Date.now() > this.nextEurekaTime && this.isFullyVisible()) {
                         this.triggerEureka();
+                    }
+
+                    // Reset if sphere drifts too far off screen
+                    if (!this.isVisible()) {
+                        this.reset();
+                        this.nextEurekaTime = this.getRandomDelay();
                     }
                 }
 
@@ -658,7 +691,7 @@
                     setTimeout(() => {
                         this.reset();
                         this.nextEurekaTime = this.getRandomDelay();
-                    }, 500);
+                    }, 300);
                 }, 300);
 
                 this.isActive = false;
