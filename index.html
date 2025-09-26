@@ -214,12 +214,27 @@
             align-items: center;
         }
 
-        .hero-logo { width: 100px; height: 100px; margin-bottom: 1.5rem; object-fit: contain; filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1)); animation: float 6s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 
-        .hero-title { font-size: 3.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.5rem; background: linear-gradient(135deg, #4FC3F7 0%, #E91E63 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-subtitle { font-size: 1.35rem; font-weight: 400; color: #e0e0e0; margin-bottom: 1rem; letter-spacing: 0.02em; }
-        .hero-description { font-size: 1rem; color: #b0b0b0; line-height: 1.7; margin: 0 auto 2rem; max-width: 500px; }
+        .hero-title {
+            font-size: clamp(1.5rem, 4.5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #4FC3F7 0%, #E91E63 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+            animation: float 6s ease-in-out infinite;
+            padding: 0 1rem;
+        }
+        .hero-description {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            line-height: 1.7;
+            margin: 0 auto 3rem;
+        }
 
         .products-grid {
             display: grid;
@@ -347,23 +362,15 @@
             .hero-main {
                 padding-top: 1rem; /* Add extra spacing from top on mobile */
             }
-            .hero-logo {
-                width: 70px;
-                height: 70px;
-                margin-bottom: 1rem;
-            }
             .hero-title {
-                font-size: 2.25rem;
-                margin-bottom: 0.25rem;
-            }
-            .hero-subtitle {
-                font-size: 1rem;
-                margin-bottom: 0.75rem;
+                font-size: clamp(1rem, 3.5vw, 2rem);
+                padding: 0 0.5rem;
             }
             .hero-description {
-                font-size: 0.875rem;
-                margin-bottom: 1.5rem;
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
                 line-height: 1.6;
+                padding: 0 1rem;
             }
             .products-grid {
                 padding: 0 1rem;
@@ -376,14 +383,10 @@
                 padding-top: 70px; /* Keep consistent with navbar height */
             }
             .hero-main {
-                padding-top: 1.5rem; /* Slightly less padding on smaller screens */
-            }
-            .hero-logo {
-                width: 60px;
-                height: 60px;
+                padding-top: 1rem; /* Slightly less padding on smaller screens */
             }
             .hero-title {
-                font-size: 2rem;
+                font-size: clamp(0.8rem, 3vw, 1.5rem);
             }
         }
     </style>
@@ -421,19 +424,16 @@
         </div>
         <div class="hero-content">
             <div class="hero-main">
-                <img src="images/screen2.png" alt="deeda" class="hero-logo">
-                <h1 class="hero-title">deeda</h1>
-                <p class="hero-subtitle">Advanced AI Engineering</p>
+                <h1 class="hero-title">Dynamic End-to-End Data Aggregation</h1>
                 <p class="hero-description">
-                    Building intelligent systems that amplify human potential.<br>
-                    Dynamic End-to-End Data Aggregation.
+                    We build intelligent systems that amplify human potential
                 </p>
 
                 <div class="products-grid">
                     <!-- AutoSprint - Flagship Product -->
                     <div class="product-card flagship">
                         <h3>AutoSprint</h3>
-                        <p>Autonomous software engineering platform - the foundation of our AI suite</p>
+                        <p>Autonomous software engineering platform</p>
                     </div>
 
                     <!-- AutoSprint Suite Products -->
