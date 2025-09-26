@@ -104,7 +104,12 @@
             text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
         }
         .nav-link-icon {
-            display: none;
+            display: inline-block;
+        }
+        .envelope-icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
         }
 
         .contact-dropdown {
@@ -546,11 +551,9 @@
                 font-size: 0.65rem;
                 letter-spacing: 0.03em;
             }
-            .nav-link-text {
-                display: none;
-            }
-            .nav-link-icon {
-                display: inline-block;
+            .envelope-icon {
+                width: 18px;
+                height: 18px;
             }
             .navbar {
                 padding: 0.75rem 0; /* Slightly smaller navbar on mobile */
@@ -599,6 +602,10 @@
             .logo-tagline {
                 font-size: 0.6rem;
             }
+            .envelope-icon {
+                width: 16px;
+                height: 16px;
+            }
             .hero-content {
                 padding-top: 70px; /* Keep consistent with navbar height */
                 padding-left: 1.25rem;
@@ -641,9 +648,8 @@
                 <span class="logo-tagline">artificial intelligence labs</span>
             </div>
             <div class="contact-dropdown">
-                <span class="nav-link nav-link-text" onclick="toggleContact(event)">Contact</span>
                 <span class="nav-link nav-link-icon" onclick="toggleContact(event)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="envelope-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="4" width="20" height="16" rx="2"/>
                         <path d="m22 7-10 5L2 7"/>
                     </svg>
