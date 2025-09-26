@@ -42,8 +42,19 @@
         .logo-section { display: flex; align-items: center; gap: 0.5rem; }
         .nav-logo { width: 24px; height: 24px; object-fit: contain; }
         .nav-name { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; color: rgba(255, 255, 255, 0.9); }
-        .nav-link { color: rgba(255, 255, 255, 0.6); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s ease; cursor: pointer; }
-        .nav-link:hover { color: rgba(255, 255, 255, 0.9); }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .nav-link:hover {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+        }
 
         .contact-dropdown {
             position: relative;
@@ -130,6 +141,30 @@
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
             overflow: hidden;
         }
+
+        /* Starfield background inspired by Reflect */
+        .starfield {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.4;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
         .animated-bg { position: absolute; width: 100%; height: 100%; overflow: hidden; }
         .gradient-sphere { position: absolute; border-radius: 50%; filter: blur(50px); opacity: 0.3; }
 
@@ -289,46 +324,81 @@
         }
 
         .product-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
             padding: 1.25rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            border: 1px solid transparent;
+            background-clip: padding-box;
+        }
+
+        /* Gradient border effect */
+        .product-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+            transition: opacity 0.4s ease;
         }
 
         .product-card.flagship {
             grid-column: span 3;
-            background: rgba(79, 195, 247, 0.05);
-            border: 1.5px solid rgba(79, 195, 247, 0.2);
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.08) 0%, rgba(79, 195, 247, 0.02) 100%);
             text-align: center;
-            padding: 2rem; /* Ensure consistent padding for all flagship cards */
+            padding: 2rem;
+            box-shadow: 0 0 40px rgba(79, 195, 247, 0.1);
+        }
+
+        .product-card.flagship::before {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.4) 0%, rgba(79, 195, 247, 0.1) 100%);
         }
 
         .product-card.suite {
-            background: rgba(79, 195, 247, 0.03);
-            border-color: rgba(79, 195, 247, 0.15);
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.06) 0%, rgba(79, 195, 247, 0.01) 100%);
+        }
+
+        .product-card.suite::before {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.3) 0%, rgba(79, 195, 247, 0.05) 100%);
         }
 
         /* Only override colors, not layout */
         .product-card.flagship.independent-pink {
-            background: rgba(233, 30, 99, 0.05);
-            border-color: rgba(233, 30, 99, 0.2);
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.08) 0%, rgba(233, 30, 99, 0.02) 100%);
+            box-shadow: 0 0 40px rgba(233, 30, 99, 0.1);
+        }
+
+        .product-card.flagship.independent-pink::before {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.4) 0%, rgba(233, 30, 99, 0.1) 100%);
         }
 
         .product-card.flagship.independent-orange {
-            background: rgba(255, 152, 0, 0.05);
-            border-color: rgba(255, 152, 0, 0.2);
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.08) 0%, rgba(255, 152, 0, 0.02) 100%);
+            box-shadow: 0 0 40px rgba(255, 152, 0, 0.1);
+        }
+
+        .product-card.flagship.independent-orange::before {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.4) 0%, rgba(255, 152, 0, 0.1) 100%);
         }
 
         .product-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-6px) scale(1.02);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 80px rgba(79, 195, 247, 0.15);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
         }
 
         .product-card h3 {
@@ -336,12 +406,33 @@
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        /* Animated gradient text on hover */
+        .product-card:hover h3 {
+            background: linear-gradient(90deg, #4FC3F7 0%, #E91E63 50%, #4FC3F7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: gradient-shift 3s linear infinite;
+        }
+
+        @keyframes gradient-shift {
+            to { background-position: 200% center; }
         }
 
         .product-card p {
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.85rem;
             line-height: 1.4;
+            transition: color 0.4s ease;
+        }
+
+        .product-card:hover p {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .product-card.flagship h3 {
@@ -473,6 +564,7 @@
     </nav>
 
     <header class="hero">
+        <div class="starfield" id="starfield"></div>
         <div class="animated-bg">
             <div class="gradient-sphere sphere-1"></div>
             <div class="gradient-sphere sphere-2"></div>
@@ -734,6 +826,37 @@
 
         // Initialize immediately
         initEurekaSpheres();
+
+        // Generate starfield (Reflect-inspired)
+        const generateStarfield = () => {
+            const starfield = document.getElementById('starfield');
+            if (starfield) {
+                const starCount = 100;
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.animationDelay = Math.random() * 4 + 's';
+                    star.style.animationDuration = (3 + Math.random() * 3) + 's';
+
+                    // Vary star sizes
+                    const size = Math.random() * 2 + 1;
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
+
+                    // Add subtle glow to some stars
+                    if (Math.random() > 0.7) {
+                        star.style.boxShadow = '0 0 ' + (size * 2) + 'px rgba(255, 255, 255, 0.8)';
+                    }
+
+                    starfield.appendChild(star);
+                }
+            }
+        };
+
+        // Initialize starfield
+        generateStarfield();
 
     </script>
 </body>
