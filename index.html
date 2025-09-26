@@ -36,6 +36,7 @@
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding: 1rem 0;
+            height: 60px; /* Explicit height for consistency */
         }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
         .logo-section { display: flex; align-items: center; gap: 0.5rem; }
@@ -195,7 +196,7 @@
         .hero-content {
             text-align: center;
             z-index: 2;
-            padding: 2rem;
+            padding: 80px 2rem 2rem; /* Add 80px top padding to account for fixed navbar */
             max-width: 900px;
             width: 100%;
             display: flex;
@@ -246,6 +247,7 @@
             background: rgba(79, 195, 247, 0.05);
             border: 1.5px solid rgba(79, 195, 247, 0.2);
             text-align: center;
+            padding: 2rem; /* Ensure consistent padding for all flagship cards */
         }
 
         .product-card.suite {
@@ -253,12 +255,13 @@
             border-color: rgba(79, 195, 247, 0.15);
         }
 
-        .product-card.independent-pink {
+        /* Only override colors, not layout */
+        .product-card.flagship.independent-pink {
             background: rgba(233, 30, 99, 0.05);
             border-color: rgba(233, 30, 99, 0.2);
         }
 
-        .product-card.independent-orange {
+        .product-card.flagship.independent-orange {
             background: rgba(255, 152, 0, 0.05);
             border-color: rgba(255, 152, 0, 0.2);
         }
@@ -332,10 +335,56 @@
         .hero-footer a:hover { color: rgba(255, 255, 255, 0.7); }
 
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.1rem; }
-            .products-inline { gap: 1rem; }
-            .product-pill { padding: 0.75rem 1rem; }
+            .navbar {
+                padding: 0.75rem 0; /* Slightly smaller navbar on mobile */
+                height: 50px;
+            }
+            .hero-content {
+                padding-top: 80px !important; /* Force padding to override desktop value */
+                min-height: auto;
+                padding-bottom: 2rem;
+            }
+            .hero-main {
+                padding-top: 1rem; /* Add extra spacing from top on mobile */
+            }
+            .hero-logo {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 1rem;
+            }
+            .hero-title {
+                font-size: 2.25rem;
+                margin-bottom: 0.25rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 0.75rem;
+            }
+            .hero-description {
+                font-size: 0.875rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
+            }
+            .products-grid {
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content {
+                padding-top: 70px; /* Keep consistent with navbar height */
+            }
+            .hero-main {
+                padding-top: 1.5rem; /* Slightly less padding on smaller screens */
+            }
+            .hero-logo {
+                width: 60px;
+                height: 60px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -401,14 +450,16 @@
                         <p>Every MCP tool - organized</p>
                     </div>
 
-                    <!-- Independent Products -->
-                    <div class="product-card independent-pink">
+                    <!-- TradeBrainz - Primary Product -->
+                    <div class="product-card flagship independent-pink">
                         <h3>TradeBrainz</h3>
-                        <p>Your personal AI hedge fund</p>
+                        <p>Your personal AI hedge fund - sophisticated trading strategies powered by advanced AI</p>
                     </div>
-                    <div class="product-card independent-orange">
+
+                    <!-- Rocket Tabs - Primary Product -->
+                    <div class="product-card flagship independent-orange">
                         <h3>Rocket Tabs</h3>
-                        <p>Smart Payments on Poynt</p>
+                        <p>Smart Payments on Poynt - revolutionizing point-of-sale with intelligent payment solutions</p>
                     </div>
                 </div>
             </div>
