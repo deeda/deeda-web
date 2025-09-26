@@ -576,6 +576,7 @@
             }
 
             init() {
+                console.log('Initializing sphere:', this.element.id);
                 // Start sphere at random position off-screen
                 this.reset();
                 this.animate();
@@ -586,8 +587,8 @@
             }
 
             reset() {
-                // Get sphere size
-                const size = parseInt(window.getComputedStyle(this.element).width);
+                // Get sphere size (default to 130 if not computed yet)
+                const size = parseInt(window.getComputedStyle(this.element).width) || 130;
                 const offset = size * 1.5; // Just 1.5 ball widths off screen
 
                 // Random starting position just barely off screen
@@ -650,19 +651,26 @@
                     this.y += this.vy;
 
                     // Gentle bounce off edges during drift
-                    const size = parseInt(window.getComputedStyle(this.element).width);
+                    const size = parseInt(window.getComputedStyle(this.element).width) || 130;
                     if (this.x < -size/2 || this.x > window.innerWidth + size/2) this.vx *= -0.8;
                     if (this.y < -size/2 || this.y > window.innerHeight + size/2) this.vy *= -0.8;
 
                     this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
 
-                    // Only trigger eureka if sphere is fully visible and it's time
-                    if (Date.now() > this.nextEurekaTime && this.isFullyVisible()) {
-                        this.triggerEureka();
+                    // Trigger eureka if it's time and sphere is at least partially visible
+                    if (Date.now() > this.nextEurekaTime) {
+                        // More lenient check - just needs to be somewhat on screen
+                        if (this.x > -size && this.x < window.innerWidth + size &&
+                            this.y > -size && this.y < window.innerHeight + size) {
+                            console.log('Triggering eureka!', this.x, this.y);
+                            this.triggerEureka();
+                        }
                     }
 
-                    // Reset if sphere drifts too far off screen
-                    if (!this.isVisible()) {
+                    // Reset if sphere drifts way off screen
+                    if (this.x < -size * 2 || this.x > window.innerWidth + size * 2 ||
+                        this.y < -size * 2 || this.y > window.innerHeight + size * 2) {
+                        console.log('Resetting sphere - too far off screen');
                         this.reset();
                         this.nextEurekaTime = this.getRandomDelay();
                     }
@@ -698,12 +706,25 @@
             }
         }
 
-        // Initialize eureka spheres
-        document.addEventListener('DOMContentLoaded', function() {
-            const eureka1 = new EurekaSphere(document.getElementById('eureka1'));
-            const eureka2 = new EurekaSphere(document.getElementById('eureka2'));
-            const eureka3 = new EurekaSphere(document.getElementById('eureka3'));
-        });
+        // Initialize eureka spheres immediately (don't wait for DOMContentLoaded)
+        // since the script is at the bottom of the page
+        const initEurekaSpheres = () => {
+            const eureka1 = document.getElementById('eureka1');
+            const eureka2 = document.getElementById('eureka2');
+            const eureka3 = document.getElementById('eureka3');
+
+            if (eureka1 && eureka2 && eureka3) {
+                console.log('Initializing eureka spheres...');
+                new EurekaSphere(eureka1);
+                new EurekaSphere(eureka2);
+                new EurekaSphere(eureka3);
+            } else {
+                console.error('Could not find eureka sphere elements');
+            }
+        };
+
+        // Try immediate init since script is after elements
+        initEurekaSpheres();
 
     </script>
 </body>
